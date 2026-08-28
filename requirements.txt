@@ -70,6 +70,7 @@ pycparser==2.23
 PyJWT==2.10.1
 pyOpenSSL==25.3.0
 python-dateutil==2.9.0.post0
+python-telegram-bot==21.11.1
 redis==7.1.0
 requests==2.25.1
 rsa==4.9.1
