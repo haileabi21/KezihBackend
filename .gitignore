@@ -1,0 +1,6 @@
+media-backup/
+media/
+staticfiles/
+backup.dump
+fresh_backup.dump
+*firebase-adminsdk*.json
