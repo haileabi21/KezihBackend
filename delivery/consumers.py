@@ -67,15 +67,6 @@ def upsert_weekly_salary(username: str, fee: int):
     )
 
 
-def get_owner_chat_id(order):
-    """Return the Telegram chat_id of the order owner, or None."""
-    try:
-        profile = Profile.objects.get(user=order.owner)
-        return profile.chat_id or None
-    except Profile.DoesNotExist:
-        return None
-
-
 def save_profile_chat_id(user, chat_id: str):
     """
     Save chat_id to the user's Profile if it is currently empty.
@@ -89,48 +80,10 @@ def save_profile_chat_id(user, chat_id: str):
     except Profile.DoesNotExist:
         pass  # profile not created yet — skip silently
 
-
-# ── Status notification messages ───────────────────────────────────────────────
-
-STATUS_MESSAGES = {
-    "confirmed": (
-        "✅ *Your order has been confirmed!*\n\n"
-        "A delivery person has been assigned and is on the way.\n"
-        "📦 Items: {item_count}\n"
-        "💰 Total: {total_price} Birr\n"
-        "📍 Address: {address}"
-    ),
-    "delivered": (
-        "🎉 *Your order has been delivered!*\n\n"
-        "Thank you for ordering with Liyu Delivery.\n"
-        "📦 Items: {item_count}\n"
-        "💰 Total: {total_price} Birr"
-    ),
-    "canceled": (
-        "❌ *Your order has been canceled.*\n\n"
-        "📦 Items: {item_count}\n"
-        "💰 Total: {total_price} Birr\n"
-        "If you have questions, please contact us."
-    ),
-    "pending": (
-        "⏳ *Your order is pending.*\n\n"
-        "We received your order and are processing it.\n"
-        "📦 Items: {item_count}\n"
-        "💰 Total: {total_price} Birr"
-    ),
-}
-
-
-def build_owner_notification(order, status: str) -> str | None:
-    """Build a Telegram message for the order owner, or None if status not mapped."""
-    template = STATUS_MESSAGES.get(status)
-    if not template:
-        return None
-    return template.format(
-        item_count=order.item_count,
-        total_price=order.total_price,
-        address=getattr(order, "shipping_address", "—"),
-    )
+# NOTE: owner status-change notifications (confirmed/delivered/cancelled)
+# moved to a post_save signal on Order in signals.py, so they fire no
+# matter where status was changed — this consumer's WebSocket flow,
+# Django admin, or anywhere else — instead of only here.
 
 
 # ── WebSocket Consumer ─────────────────────────────────────────────────────────
@@ -229,8 +182,9 @@ class OrderConsumer(AsyncWebsocketConsumer):
                 {"type": "status_update", "data": serialized}
             )
 
-            # notify the order owner on their Telegram
-            await self.notify_order_owner(order, data["status"])
+            # Owner Telegram notification now handled by the post_save
+            # signal on Order in signals.py — fires from order.save()
+            # above regardless of where the status change came from.
 
         except Order.DoesNotExist:
             print("Order not found")
@@ -319,8 +273,8 @@ class OrderConsumer(AsyncWebsocketConsumer):
 """
             await self.notify_delivery(message)
 
-            # Also notify the owner themselves
-            await self.notify_order_owner(order, data["status"])
+            # Owner Telegram notification (order cancelled) now handled by
+            # the post_save signal on Order in signals.py.
 
         except Order.DoesNotExist:
             print("Cancel failed: order not found")
@@ -385,22 +339,3 @@ class OrderConsumer(AsyncWebsocketConsumer):
 
         for chat_id in ids:
             await sync_to_async(send_telegram)(message, chat_id, use_portal_bot=True)
-
-    async def notify_order_owner(self, order, status: str):
-        """
-        Send a status-change notification to the order owner via their
-        personal Telegram chat_id using the customer-facing bot (TELEGRAM_BOT_TOKEN).
-        Errors are caught so a missing chat_id never breaks the main flow.
-        """
-        try:
-            owner_chat_id = await sync_to_async(get_owner_chat_id)(order)
-            if not owner_chat_id:
-                return  # owner hasn't linked Telegram yet — skip silently
-
-            message = build_owner_notification(order, status)
-            if not message:
-                return  # status not in our notification map
-
-            await sync_to_async(send_telegram)(message, owner_chat_id, use_portal_bot=False)
-        except Exception as e:
-            print(f"notify_order_owner error (order {order.id}, status {status}): {e}")

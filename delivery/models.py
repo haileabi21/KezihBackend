@@ -134,6 +134,13 @@ class Order(models.Model):
     ]
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD, default='prepaid')
 
+    # Guards against re-sending the owner's Telegram status message every
+    # time this row is re-saved while already in that status (e.g.
+    # attaching a payment screenshot after delivery, or an unrelated admin
+    # edit). Set only once a notification for that exact status has
+    # actually been sent — see the post_save signal in signals.py.
+    owner_notified_status = models.CharField(max_length=20, null=True, blank=True)
+
     def __str__(self):
         return f"Order {self.order_number} - {self.owner.user.username}"
 
@@ -193,6 +200,33 @@ class ProductRating(models.Model):
 
     def __str__(self):
         return f"{self.user.username} → {self.product.name}: {self.score}"
+
+
+# ── Broadcasts (ads / discounts / recommendations) ──────────────────────
+# An admin drafts one of these in Django admin, then runs the "Send to
+# Telegram now" action to push it out. Saving a draft never sends
+# anything by itself — only the action does, exactly once per broadcast.
+
+class Broadcast(models.Model):
+    TARGET_CHOICES = [
+        ("all",       "Everyone"),
+        ("customers", "Customers only"),
+        ("delivery",  "Delivery staff only"),
+    ]
+
+    title   = models.CharField(max_length=100, help_text="Internal label only — not sent to users.")
+    message = models.TextField(help_text="Telegram Markdown supported (*bold*, _italic_, etc.)")
+    target  = models.CharField(max_length=20, choices=TARGET_CHOICES, default="all")
+
+    created_at      = models.DateTimeField(auto_now_add=True)
+    sent_at         = models.DateTimeField(null=True, blank=True)
+    recipient_count = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.title} ({'sent' if self.sent_at else 'draft'})"
 
 
 # ── Giveaway (milestone) ────────────────────────────────────────────────

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib import messages
 from django.contrib.admin import AdminSite
 from django.urls import reverse
 from django.utils.html import format_html
@@ -7,7 +8,8 @@ from django.db.models import Count, Sum, Q
 from django.utils import timezone
 from .models import (Profile, CategoryModel, ProductItem, ProductImage,
                      Order, ContactUs, WeeklySalaryRecord, ProductRating,
-                     SpinPrize, SpinWheelResult)
+                     SpinPrize, SpinWheelResult, Broadcast)
+from .send_message import send_telegram_message
 
 @admin.register(WeeklySalaryRecord)
 class WeeklySalaryRecordAdmin(admin.ModelAdmin):
@@ -792,3 +794,106 @@ class SpinWheelResultAdmin(admin.ModelAdmin):
             url, obj.order.order_number
         )
     order_link.short_description = "Granting Order"
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+#  Broadcast Admin — ads / discounts / recommendations sent to Telegram
+# ──────────────────────────────────────────────────────────────────────────────
+
+BROADCAST_TARGET_COLORS = {
+    "all":       (PALETTE["info"],    "#ffffff"),
+    "customers": (PALETTE["success"], "#ffffff"),
+    "delivery":  (PALETTE["warning"], "#2d3436"),
+}
+
+
+@admin.register(Broadcast)
+class BroadcastAdmin(admin.ModelAdmin):
+    """
+    Draft an ad / discount / recommendation here, then select it in the
+    list and run "Send to Telegram now". Nothing goes out just from
+    saving — only the action sends, and it skips anything already sent
+    so re-running it on an old broadcast is always safe.
+    """
+    list_display    = ["title", "target_badge", "message_preview", "status_badge", "recipient_count", "created_at"]
+    list_filter     = ["target"]
+    search_fields   = ["title", "message"]
+    ordering        = ["-created_at"]
+    readonly_fields = ["sent_at", "recipient_count"]
+    actions         = ["send_broadcast"]
+
+    fieldsets = [
+        ("📣 Message", {
+            "fields": ["title", "message", "target"],
+            "description": (
+                "Telegram Markdown is supported — *bold*, _italic_, etc. "
+                "This is a draft until you run the send action below."
+            ),
+        }),
+        ("📊 Delivery", {
+            "fields": ["sent_at", "recipient_count"],
+        }),
+    ]
+
+    def target_badge(self, obj):
+        bg, fg = BROADCAST_TARGET_COLORS.get(obj.target, (PALETTE["muted"], "#fff"))
+        return _badge(obj.get_target_display(), bg, fg=fg)
+    target_badge.short_description = "Audience"
+
+    def message_preview(self, obj):
+        preview = (obj.message[:80] + "…") if len(obj.message) > 80 else obj.message
+        return format_html(
+            '<span style="color:#636e72;font-style:italic;">{}</span>', preview
+        )
+    message_preview.short_description = "Message"
+
+    def status_badge(self, obj):
+        if obj.sent_at:
+            return _badge("✅ Sent", PALETTE["success"])
+        return _badge("📝 Draft", PALETTE["muted"])
+    status_badge.short_description = "Status"
+
+    @admin.action(description="📤 Send to Telegram now")
+    def send_broadcast(self, request, queryset):
+        already_sent_count = 0
+        newly_sent_count   = 0
+        total_recipients   = 0
+
+        for broadcast in queryset:
+            if broadcast.sent_at:
+                already_sent_count += 1
+                continue
+
+            profiles = Profile.objects.exclude(chat_id__isnull=True).exclude(chat_id="")
+            if broadcast.target == "customers":
+                profiles = profiles.filter(is_delivery=False)
+            elif broadcast.target == "delivery":
+                profiles = profiles.filter(is_delivery=True)
+
+            sent_count = 0
+            for profile in profiles:
+                try:
+                    send_telegram_message(broadcast.message, profile.chat_id, use_portal_bot=False)
+                    sent_count += 1
+                except Exception as e:
+                    print(f"Broadcast send error (broadcast {broadcast.pk}, profile {profile.pk}): {e}")
+
+            broadcast.sent_at = timezone.now()
+            broadcast.recipient_count = sent_count
+            broadcast.save(update_fields=["sent_at", "recipient_count"])
+
+            newly_sent_count += 1
+            total_recipients += sent_count
+
+        if newly_sent_count:
+            self.message_user(
+                request,
+                f"Sent {newly_sent_count} broadcast(s) to {total_recipients} recipient(s) total.",
+                level=messages.SUCCESS,
+            )
+        if already_sent_count:
+            self.message_user(
+                request,
+                f"Skipped {already_sent_count} broadcast(s) that were already sent.",
+                level=messages.WARNING,
+            )
