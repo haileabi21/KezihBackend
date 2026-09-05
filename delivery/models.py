@@ -277,3 +277,24 @@ class SpinWheelResult(models.Model):
     def __str__(self):
         prize_label = self.prize.label if self.prize else "Deleted prize"
         return f"{self.profile} — {prize_label} ({self.spun_at:%Y-%m-%d})"
+
+
+# ── Telegram bot chat_id registry ─────────────────────────────────────────
+# A minimal, deduplicated log of every chat_id that has ever hit /start on
+# the bot. This is separate from Profile.chat_id (which links a chat_id to a
+# logged-in app user) — this table just needs a unique running list, e.g. for
+# broadcast messaging, independent of whether that chat_id ever signs in.
+
+class TelegramChatId(models.Model):
+    chat_id = models.CharField(max_length=500, unique=True, db_index=True)
+    username = models.CharField(max_length=150, null=True, blank=True)
+    first_name = models.CharField(max_length=150, null=True, blank=True)
+    last_name = models.CharField(max_length=150, null=True, blank=True)
+    first_seen = models.DateTimeField(auto_now_add=True)
+    last_seen = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-first_seen"]
+
+    def __str__(self):
+        return f"{self.chat_id} ({self.username or self.first_name or 'unknown'})"

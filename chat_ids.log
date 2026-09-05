@@ -252,3 +252,79 @@
 2026-08-28 16:27:52,529 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8675611169:AAF_DKY6zokmqA1F0n3cOR7f_RO5WZzO6rA/getUpdates "HTTP/1.1 200 OK"
 2026-08-28 16:27:52,531 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
 2026-08-28 16:27:52,532 - telegram.ext.Application - INFO - Application.stop() complete
+2026-08-29 14:45:02,236 - __main__ - INFO - Kezih Delivery bot is starting (polling)...
+2026-08-29 14:45:02,953 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getMe "HTTP/1.1 200 OK"
+2026-08-29 14:45:03,062 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/deleteWebhook "HTTP/1.1 200 OK"
+2026-08-29 14:45:03,070 - telegram.ext.Application - INFO - Application started
+2026-08-29 14:45:03,428 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:45:03,435 - __main__ - INFO - New /start — chat_id=6191798813 username=code4fan name=Code4fan🐍 
+2026-08-29 14:45:03,696 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:45:03,698 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'type': <ChatType.PRIVATE>, 'username': 'code4fan'}, 'date': 1787920855, 'message_id': 133, 'from': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'is_bot': False, 'language_code': 'en', 'username': 'code4fan'}}, 'update_id': 198646365}
+2026-08-29 14:45:03,699 - __main__ - INFO - New /start — chat_id=6191798813 username=code4fan name=Code4fan🐍 
+2026-08-29 14:45:03,871 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:45:03,875 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'type': <ChatType.PRIVATE>, 'username': 'code4fan'}, 'date': 1787920900, 'message_id': 134, 'from': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'is_bot': False, 'language_code': 'en', 'username': 'code4fan'}}, 'update_id': 198646366}
+2026-08-29 14:45:03,876 - __main__ - INFO - New /start — chat_id=6191798813 username=code4fan name=Code4fan🐍 
+2026-08-29 14:45:04,020 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:45:04,024 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'type': <ChatType.PRIVATE>, 'username': 'code4fan'}, 'date': 1787921117, 'message_id': 135, 'from': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'is_bot': False, 'language_code': 'en', 'username': 'code4fan'}}, 'update_id': 198646367}
+2026-08-29 14:45:04,025 - __main__ - INFO - New /start — chat_id=6191798813 username=code4fan name=Code4fan🐍 
+2026-08-29 14:45:04,181 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:45:04,186 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'type': <ChatType.PRIVATE>, 'username': 'code4fan'}, 'date': 1787921358, 'message_id': 136, 'from': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'is_bot': False, 'language_code': 'en', 'username': 'code4fan'}}, 'update_id': 198646368}
+2026-08-29 14:45:04,187 - __main__ - INFO - New /start — chat_id=6191798813 username=code4fan name=Code4fan🐍 
+2026-08-29 14:45:04,414 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:45:04,419 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'type': <ChatType.PRIVATE>, 'username': 'code4fan'}, 'date': 1787922458, 'message_id': 137, 'from': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'is_bot': False, 'language_code': 'en', 'username': 'code4fan'}}, 'update_id': 198646369}
+2026-08-29 14:45:04,420 - __main__ - INFO - New /start — chat_id=6191798813 username=code4fan name=Code4fan🐍 
+2026-08-29 14:45:04,636 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:45:04,638 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'type': <ChatType.PRIVATE>, 'username': 'code4fan'}, 'date': 1787923495, 'message_id': 138, 'from': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'is_bot': False, 'language_code': 'en', 'username': 'code4fan'}}, 'update_id': 198646370}
+2026-08-29 14:45:13,646 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:45:23,783 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:45:33,921 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:45:44,161 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:45:54,301 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:46:04,438 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:46:14,580 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:46:24,711 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:46:34,850 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:46:44,984 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:46:52,667 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:46:52,671 - __main__ - INFO - New /start — chat_id=6191798813 username=code4fan name=Code4fan🐍 
+2026-08-29 14:46:53,471 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:46:53,475 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'type': <ChatType.PRIVATE>, 'username': 'code4fan'}, 'date': 1788004012, 'message_id': 145, 'from': {'first_name': 'Code4fan🐍', 'id': 6191798813, 'is_bot': False, 'language_code': 'en', 'username': 'code4fan'}}, 'update_id': 198646371}
+2026-08-29 14:47:02,804 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:47:12,941 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:47:23,179 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:47:33,301 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:47:43,454 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:47:48,677 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:47:48,681 - __main__ - INFO - New /start — chat_id=6930188992 username=Hhhh1229 name=፩፪፫ 
+2026-08-29 14:47:49,141 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-29 14:47:49,147 - __main__ - INFO - RAW UPDATE RECEIVED: {'message': {'channel_chat_created': False, 'delete_chat_photo': False, 'entities': [{'length': 6, 'offset': 0, 'type': <MessageEntityType.BOT_COMMAND>}], 'group_chat_created': False, 'supergroup_chat_created': False, 'text': '/start', 'chat': {'first_name': '፩፪፫', 'id': 6930188992, 'type': <ChatType.PRIVATE>, 'username': 'Hhhh1229'}, 'date': 1788004068, 'message_id': 147, 'from': {'first_name': '፩፪፫', 'id': 6930188992, 'is_bot': False, 'language_code': 'en', 'username': 'Hhhh1229'}}, 'update_id': 198646372}
+2026-08-29 14:47:58,815 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:48:08,952 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:48:19,142 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:48:29,330 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:48:39,446 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:48:49,610 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:48:59,743 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:49:09,881 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:49:20,017 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:49:30,131 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:49:40,297 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:49:50,431 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:50:00,569 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:50:10,809 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:50:20,946 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:50:31,055 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:50:41,222 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:50:51,361 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:51:01,499 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:51:11,641 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:51:21,774 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:51:31,912 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:51:42,049 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:51:52,187 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:52:02,325 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:52:12,465 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:52:22,711 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:52:32,846 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:52:42,980 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-29 14:52:53,120 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8914844730:AAHYaul1g5vu9F9m_la0Yfa3pxwe5-Js3qA/getUpdates "HTTP/1.1 200 OK"
