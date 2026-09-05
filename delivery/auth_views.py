@@ -31,13 +31,20 @@ def _tokens_for_user(user: User) -> dict:
     }
 
 
-def _save_chat_id(user: User, chat_id: str) -> None:
-    """Write chat_id to the user's profile. No-op if chat_id is empty."""
+def _save_chat_id_if_missing(user: User, chat_id: str) -> None:
+    """
+    Write chat_id to the user's profile ONLY if it isn't already set.
+    No-op if chat_id is empty, or if the profile already has a chat_id
+    (so we never clobber it — e.g. a user logging in from a device/session
+    where Telegram didn't hand us a chat_id shouldn't wipe the one we
+    already have on file).
+    """
     if not chat_id:
         return
     profile, _ = Profile.objects.get_or_create(user=user)
-    profile.chat_id = chat_id
-    profile.save(update_fields=["chat_id"])
+    if not profile.chat_id:
+        profile.chat_id = chat_id
+        profile.save(update_fields=["chat_id"])
 
 
 # ── Login (replaces api/token/ so we can save chat_id in the same request) ───
@@ -71,8 +78,9 @@ class LoginView(APIView):
                 status=status.HTTP_401_UNAUTHORIZED,
             )
 
-        # Persist chat_id if supplied (idempotent — safe on every login)
-        _save_chat_id(user, chat_id)
+        # Persist chat_id only if the profile doesn't already have one
+        # (idempotent — safe on every login, never clobbers an existing value)
+        _save_chat_id_if_missing(user, chat_id)
 
         return Response(_tokens_for_user(user), status=status.HTTP_200_OK)
 
@@ -128,9 +136,11 @@ class CreateUserView(APIView):
         profile, _ = Profile.objects.get_or_create(user=user)
         profile.phone       = phone
         profile.is_delivery = is_delivery
-        if chat_id:
-            profile.chat_id = chat_id
-        profile.save(update_fields=["phone", "is_delivery", "chat_id"])
+        profile.save(update_fields=["phone", "is_delivery"])
+
+        # Same if-missing logic as login — on a brand-new profile this always
+        # writes, but sharing the helper keeps the rule in one place.
+        _save_chat_id_if_missing(user, chat_id)
 
         return Response(
             {"ok": True, "username": user.username},
